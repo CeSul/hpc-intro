@@ -65,7 +65,7 @@ running the job through the scheduler and just "running it".
 To submit this job to the scheduler, we use the `sbatch` command.
 
 ```
-[remote]$ sbatch example-job.sh
+[remote]$ sbatch example-job.slurm
 ```
 {: .bash}
 ```
@@ -83,7 +83,7 @@ To check on our job's status, we use the command `squeue`.
 ```
    JOBID     USER ACCOUNT           NAME  ST REASON    START_TIME                TIME  TIME_LEFT NODES CPU
 S
-   36856 yourUsername yourAccount example-job.sh   R None      2017-07-01T16:47:02       0:11      59:49     1
+   36856 yourUsername yourAccount example-job.slurm   R None      2017-07-01T16:47:02       0:11      59:49     1
 1
 ```
 {: .output}
@@ -97,7 +97,7 @@ To see a real-time view of our jobs, we can use the `watch` command.
 Let's try using it to monitor another job.
 
 ```
-[remote]$ sbatch example-job.sh
+[remote]$ sbatch example-job.slurm
 [remote]$ watch squeue -u yourUsername
 ```
 {: .bash}
@@ -129,7 +129,7 @@ Let's illustrate this by example.
 By default, a job's name is the name of the script,
 but the `-J` option can be used to change the name of a job.
 
-Submit the following job (`sbatch example-job.sh`):
+Submit the following job (`sbatch example-job.slurm`):
 
 ```
 #!/bin/bash
@@ -214,15 +214,15 @@ sleep 120
 Submit the job and wait for it to finish. 
 Once it is has finished, check the log file.
 ```
-[remote]$ sbatch example-job.sh
+[remote]$ sbatch example-job.slurm
 [remote]$ watch squeue -u yourUsername
 [remote]$ cat slurm-38193.out
 ```
 {: .bash}
 ```
 This job is running on:
-gra533
-slurmstepd: error: *** JOB 38193 ON gra533 CANCELLED AT 2017-07-02T16:35:48 DUE TO TIME LIMIT ***
+hpc1118
+slurmstepd: error: *** JOB 38193 ON hpc1118 CANCELLED AT 2017-07-02T16:35:48 DUE TO TIME LIMIT ***
 ```
 {: .output}
 
@@ -245,7 +245,7 @@ This can be done with the `scancel` command.
 Let's submit a job and then cancel it using its job number.
 
 ```
-[remote]$ sbatch example-job.sh
+[remote]$ sbatch example-job.slurm
 [remote]$ squeue -u yourUsername
 ```
 {: .bash}
@@ -253,7 +253,7 @@ Let's submit a job and then cancel it using its job number.
 Submitted batch job 38759
 
    JOBID     USER ACCOUNT           NAME  ST REASON    START_TIME                TIME  TIME_LEFT NODES CPUS
-   38759 yourUsername yourAccount example-job.sh  PD Priority  N/A                       0:00       1:00     1    1
+   38759 yourUsername yourAccount example-job.slurm  PD Priority  N/A                       0:00       1:00     1    1
 ```
 {: .output}
 
